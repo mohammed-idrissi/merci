@@ -1,0 +1,23 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # السماح بالوصول المباشر للملفات الموجودة فعليًا (صور، CSS، JS)
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^ - [L]
+
+    # توجيه الطلبات الأخرى إلى public/index.php
+    RewriteRule ^ public/index.php [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+    # السماح بالتخزين المؤقت للمتصفح
+    <FilesMatch "\.(ico|jpg|jpeg|png|gif|css|js|woff|woff2|ttf|svg|eot|otf|ttf|webp|mp4|webm|ogg|mp3|wav|flac)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+</IfModule>
+
+# حماية ملفات النظام من الوصول العام
+<FilesMatch "^(artisan|composer\.(json|lock)|\.env)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
