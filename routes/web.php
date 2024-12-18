@@ -146,24 +146,21 @@ Route::post('/reservations', [ReservationController::class, 'store'])->name('res
 
 
 
-Route::delete('/appartements/{id}', [CreateAppartementController::class, 'destroy'])->name('appartements.destroy');
-Route::post('/appartements/store', [CreateAppartementController::class, 'store'])->name('appartements.store');
-Route::resource('appartements', CreateAppartementController::class);
-Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
 
-Route::get('/appartements', [CreateAppartementController::class, 'index'])->name('appartements.index');
-Route::get('/appartements/create', [CreateAppartementController::class, 'create'])->name('appartements.create');
-Route::post('/appartements', [CreateAppartementController::class, 'store'])->name('appartements.store');
+
+/// مسارات خاصة بالشقق (Appartements)
+Route::resource('appartements', CreateAppartementController::class);
+Route::post('/appartements/store', [CreateAppartementController::class, 'store'])->name('appartements.store');
 Route::get('/appartements/{id}/edit', [CreateAppartementController::class, 'edit'])->name('appartements.edit');
 Route::put('/appartements/{id}', [CreateAppartementController::class, 'update'])->name('appartements.update');
 Route::delete('/appartements/{id}', [CreateAppartementController::class, 'destroy'])->name('appartements.destroy');
 
-// routes/web.php
-Route::post('appartements/store', [AppartementController::class, 'store'])->name('appartements.store');
-
-
+// مسارات إضافية للشقق (إذا كانت لها وظائف مميزة)
 Route::get('/appartement/valid', [AppartementController::class, 'Validation'])->name('appartement.appartementValid');
-Route::get('/ApparetementIndex',[AppartementController::class,'index'])->name('Apparetementindex');
+Route::get('/appartement/valid/{id}', [AppartementController::class, 'Validation2'])->name('appartement.appartementValid2');
+Route::get('/appartement/admin', [AppartementController::class, 'appartementAdmin'])->name('appartement.admin');
+Route::get('/ApparetementIndex', [AppartementController::class, 'index'])->name('Apparetementindex');
+
 
 Route::get('/menu/voirmenu', [MenuController::class, 'voirmenu'])->name('client.menu.voirmenu');
 

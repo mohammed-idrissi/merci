@@ -17,6 +17,8 @@ class PetitsDejeuner extends Model
         'nom',        // اسم الـ Petit Dejeuner
         'description', // وصف الـ Petit Dejeuner
         'image',       // مسار الصورة
+        'prix'// وصف الـ Petit Dejeuner
+
     ];
 
     // في حال كان هناك علاقات مع موديلات أخرى، يمكن إضافتها هنا

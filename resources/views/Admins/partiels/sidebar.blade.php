@@ -127,11 +127,7 @@
 
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="color: #d0d7ff">&times;</a>
 
-    <div style="    display: flex;
-    flex-direction: column;
-    align-items: center;">
-    <img src="clientpage/images/MERCI_IMG/Logo-Merci.png" alt="" width="200px">
-    </div>
+
 
     <ul class="nav">
 
@@ -199,6 +195,15 @@
                 <span class="menu-title">Reservation</span>
             </a>
         </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="appartement/admin">
+                <span class="menu-icon">
+                    <i class="mdi mdi-file-document-box"></i>
+                </span>
+                <span class="menu-title">Appartement</span>
+            </a>
+        </li>
+
 
         <li class="nav-item menu-items">
             <a class="nav-link" href="photos">
@@ -225,7 +230,7 @@
             </a>
         </li>
 
-        <li class="nav-item menu-items" style="margin-top: 50px;">
+        <li class="nav-item menu-items" >
             <span class="barre"></span>
             <a class="nav-link" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
@@ -233,7 +238,7 @@
 
 
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    <form id="logout-form" action="{{ secure_url(route('logout')) }}" method="POST" class="d-none">
                         @csrf
                     </form>
 

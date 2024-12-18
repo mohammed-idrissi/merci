@@ -10,6 +10,7 @@ class Supplement extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nom', 'description', 'image'
+        'nom', 'description', 'image'      ,  'prix'// وصف الـ Petit Dejeuner
+
     ];
 }
