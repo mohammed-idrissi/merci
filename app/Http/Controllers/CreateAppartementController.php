@@ -34,7 +34,9 @@ class CreateAppartementController extends Controller
 
         // التعامل مع الصورة إذا كانت موجودة
         if ($request->hasFile('image')) {
-            $validatedData['image'] = $request->file('image')->store('upload/img', 'public');
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+            $validatedData['image'] = 'images/' . $imageName;
         }
 
         // إضافة القيمة الافتراضية للـ etoiles إذا لم تكن موجودة
@@ -63,15 +65,16 @@ class CreateAppartementController extends Controller
             'prix' => 'required|numeric|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'etoiles' => 'nullable|integer|min:1|max:5',
-            'extra_info' => 'nullable|string|max:255'
+            'extra_info' => 'nullable|string|max:255',
         ]);
 
         $appartement = CreateAppartement::findOrFail($id);
 
         // التعامل مع الصورة إذا كانت موجودة
         if ($request->hasFile('image')) {
-            // إذا كانت الصورة جديدة، نقوم بتخزينها
-            $validated['image'] = $request->file('image')->store('upload/img', 'public');
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+            $validated['image'] = 'images/' . $imageName;
         }
 
         // تحديث البيانات في قاعدة البيانات

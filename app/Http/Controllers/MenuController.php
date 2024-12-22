@@ -35,13 +35,14 @@ class MenuController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $imagePath = $request->file('image')->store('images/petits-dejeuners', 'public');
+        // حفظ الصورة في public/images/petits-dejeuners
+        $imagePath = $request->file('image')->move(public_path('images/petits-dejeuners'), $request->file('image')->getClientOriginalName());
 
         PetitsDejeuner::create([
             'nom' => $request->nom,
             'description' => $request->description,
             'prix' => $request->prix,
-            'image' => $imagePath,
+            'image' => 'images/petits-dejeuners/' . $request->file('image')->getClientOriginalName(),
         ]);
 
         return redirect()->route('admin.menu.petits-dejeuners.index');
@@ -63,13 +64,14 @@ class MenuController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $imagePath = $request->file('image')->store('images/brunches', 'public');
+        // حفظ الصورة في public/images/brunches
+        $imagePath = $request->file('image')->move(public_path('images/brunches'), $request->file('image')->getClientOriginalName());
 
         Brunch::create([
             'nom' => $request->nom,
             'description' => $request->description,
             'prix' => $request->prix,
-            'image' => $imagePath,
+            'image' => 'images/brunches/' . $request->file('image')->getClientOriginalName(),
         ]);
 
         return redirect()->route('admin.menu.brunches.index');
@@ -89,13 +91,14 @@ class MenuController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $imagePath = $request->file('image')->store('images/supplements', 'public');
+        // حفظ الصورة في public/images/supplements
+        $imagePath = $request->file('image')->move(public_path('images/supplements'), $request->file('image')->getClientOriginalName());
 
         Supplement::create([
             'nom' => $request->nom,
             'description' => $request->description,
             'prix' => $request->prix,
-            'image' => $imagePath,
+            'image' => 'images/supplements/' . $request->file('image')->getClientOriginalName(),
         ]);
 
         return redirect()->route('admin.menu.supplements.index');
@@ -103,26 +106,19 @@ class MenuController extends Controller
 
     public function indexSupplements()
     {
-        // استرجاع جميع الـ supplements من قاعدة البيانات
         $supplements = Supplement::all();
-
-        // تمرير البيانات إلى الـ view لعرضها
         return view('admin.menu.supplements.index', compact('supplements'));
     }
+
     public function indexPetitsDejeuners()
     {
         $petitsDejeuners = PetitsDejeuner::all();
         return view('admin.menu.petits-dejeuners.index', compact('petitsDejeuners'));
     }
-    public function indexbrunches()
-    {
-        // استرجاع جميع الـ brunches من قاعدة البيانات
-        $brunches = Brunch::all();
 
-        // تمرير البيانات إلى الـ view لعرضها
+    public function indexBrunches()
+    {
+        $brunches = Brunch::all();
         return view('admin.menu.brunches.index', compact('brunches'));
     }
-
-
 }
-

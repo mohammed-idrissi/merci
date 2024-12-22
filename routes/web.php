@@ -152,6 +152,8 @@ Route::post('/reservations', [ReservationController::class, 'store'])->name('res
 Route::resource('appartements', CreateAppartementController::class);
 Route::post('/appartements/store', [CreateAppartementController::class, 'store'])->name('appartements.store');
 Route::get('/appartements/{id}/edit', [CreateAppartementController::class, 'edit'])->name('appartements.edit');
+Route::get('/appartement/{id}/edit', [AppartementController::class, 'edit'])->name('appartement.edit');
+
 Route::put('/appartements/{id}', [CreateAppartementController::class, 'update'])->name('appartements.update');
 Route::delete('/appartements/{id}', [CreateAppartementController::class, 'destroy'])->name('appartements.destroy');
 
