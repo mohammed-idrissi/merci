@@ -126,7 +126,6 @@ telles que les détails de livraison et les préférences spéciales, pour que n
                                                 @enderror
                                             </div>
 
-                                            <button type="submit" class="btn btn-primary">Confirmer la réservation</button>
                                         </div>
 
 
@@ -195,23 +194,11 @@ telles que les détails de livraison et les préférences spéciales, pour que n
 
 
 
-
                                 @if(isset($price))
-                                <input type="hidden" value="{{ $price }}" name="price" id="total">
-                                <tr class="bg-light">
-                                    <td colspan="2">
-                                        <h5 class="font-size-14 m-0">Total:</h5>
-                                    </td>
-                                    <td style="white-space: nowrap;">
-                                        {{ $price }} DH
-                                    </td>
-                                </tr>
+                                <p>Prix de la chambre: {{ $price }}DH</p>
                             @else
-                                <tr>
-                                    <td colspan="3">لم يتم العثور على الثمن.</td>
-                                </tr>
+                                <p>Le prix est indisponible.</p>
                             @endif
-
 
                             </tbody>
                         </table>

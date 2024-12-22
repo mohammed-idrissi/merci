@@ -119,7 +119,7 @@
                             <img src={{ asset('clientpage/images/our-menu-16.jpg') }} alt="IMG-MENU" class="img-fluid">
 
                             <!-- Button2 -->
-                            <a href="{{ route('clientMenu.index') }}" class="btn2 flex-c-m txt5 ab-c-m size9">
+                            <a href="#supplements" class="btn2 flex-c-m txt5 ab-c-m size9">
                                 Dessert
                             </a>
                         </div>
