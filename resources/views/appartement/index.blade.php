@@ -5,7 +5,7 @@
 <base href="/public">
 <!-- Title Page -->
 <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15"
-    style="background-image: url(clientpage/images/bg-title-page-03.jpg);">
+    style="background-image: url({{ secure_asset('clientpage/images/bg-title-page-03.jpg') }});">
     <div style="    display: flex;
         flex-direction: column;
         align-items: center;">
@@ -15,21 +15,20 @@
 
             <div class="mb-4" >
                 {{-- Merci Laayoune --}}
-                <img class="mercilogo-autre"  src="clientpage/images/MERCI_IMG/LOGO/Logo-Merci-b1.png" alt="" >
+                <img class="mercilogo-autre" src="{{ secure_asset('clientpage/images/MERCI_IMG/LOGO/Logo-Merci-b1.png') }}" alt="" >
             </div>
 
             <div style="    display: flex;
             align-items: center;">
-                <a href="https://www.facebook.com/mercilaayoune"><img src="clientpage/images/MERCI_IMG/social-media-merci/facebook-app-symbol-merci.png" alt="" width="22px"></a>
-                <a href="https://www.instagram.com/mercilaayoune1"><img class="ml-2" src="clientpage/images/MERCI_IMG/social-media-merci/instagram-merci.png" alt="" width="22px"></a>
-                <a href="https://www.tiktok.com/@mercilaayoune"><img class="ml-2" src="clientpage/images/MERCI_IMG/social-media-merci/tik-tok-merci.png" alt="" width="22px"></a>
-                <a href="https://t.snapchat.com/Df0EWYBp"><img class="ml-2" src="clientpage/images/MERCI_IMG/social-media-merci/snapchat.png" alt="" width="22px"></a>
-                <a href="https://shorturl.at/cnrt1"><img class="ml-2" src="clientpage/images/MERCI_IMG/social-media-merci/pin-merci.png" alt="" width="22px"></a>
+                <a href="https://www.facebook.com/mercilaayoune"><img src="{{ secure_asset('clientpage/images/MERCI_IMG/social-media-merci/facebook-app-symbol-merci.png') }}" alt="" width="22px"></a>
+                <a href="https://www.instagram.com/mercilaayoune1"><img class="ml-2" src="{{ secure_asset('clientpage/images/MERCI_IMG/social-media-merci/instagram-merci.png') }}" alt="" width="22px"></a>
+                <a href="https://www.tiktok.com/@mercilaayoune"><img class="ml-2" src="{{ secure_asset('clientpage/images/MERCI_IMG/social-media-merci/tik-tok-merci.png') }}" alt="" width="22px"></a>
+                <a href="https://t.snapchat.com/Df0EWYBp"><img class="ml-2" src="{{ secure_asset('clientpage/images/MERCI_IMG/social-media-merci/snapchat.png') }}" alt="" width="22px"></a>
+                <a href="https://shorturl.at/cnrt1"><img class="ml-2" src="{{ secure_asset('clientpage/images/MERCI_IMG/social-media-merci/pin-merci.png') }}" alt="" width="22px"></a>
             </div>
 
     </div>
 </section>
-
 
 <div class="container">
     <div class="title-section-ourmenu t-center m-b-22">
@@ -39,10 +38,10 @@
 
     <div class="card-container">
         @foreach($rooms as $room)
-        <form action="{{secure_url( route('appartement.appartementValid', ['id' => $room->id]) )}}" method="GET">
+        <form action="{{ secure_url(route('appartement.appartementValid', ['id' => $room->id])) }}" method="GET">
             @csrf
             <div class="card">
-                <img src="{{ secure_asset('storage/'.$room->image) }}" alt="{{ $room->nom }}">
+                <img src="{{ secure_asset('storage/' . $room->image) }}" alt="{{ $room->nom }}">
                 <div class="card-info">
                     <h3>{{ $room->nom }}</h3>
                     <p>{{ $room->description }}</p>
@@ -60,8 +59,6 @@
         @endforeach
     </div>
 </div>
-
-
 
 
 <style>
