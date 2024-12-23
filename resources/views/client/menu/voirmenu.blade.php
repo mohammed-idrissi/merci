@@ -116,7 +116,7 @@
                     <div class="col-12">
                         <!-- Item our menu -->
                         <div class="item-ourmenu bo-rad-10 hov-img-zoom pos-relative m-t-30">
-                            <img src={{ asset('clientpage/images/our-menu-16.jpg') }} alt="IMG-MENU" class="img-fluid">
+                            <img src={{ secure_asset('clientpage/images/our-menu-16.jpg') }} alt="IMG-MENU" class="img-fluid">
 
                             <!-- Button2 -->
                             <a href="#supplements" class="btn2 flex-c-m txt5 ab-c-m size9">
@@ -136,7 +136,7 @@
 <!-- Section: Petits Déjeuners -->
 <section class="section-lunch bgwhite">
     <div class="header-lunch parallax0 parallax100"
-        style="background-image: url('{{ asset('clientpage/images/header-menu-01.jpg') }}');">
+        style="background-image: url('{{ secure_asset('clientpage/images/header-menu-01.jpg') }}');">
         <div class="bg1-overlay t-center p-t-50 p-b-50">
             <h2 class="tit4 t-center">Petits Déjeuners</h2>
         </div>
@@ -149,7 +149,7 @@
                     <div class="blo3 flex-w flex-col-l-sm m-b-30">
                         <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
                             <a href="{{ route('cart.show', $item->id) }}">
-                                <img src="{{ asset( $item->image) }}" alt="IMG-MENU" class="img-fluid">
+                                <img src="{{ secure_asset( $item->image) }}" alt="IMG-MENU" class="img-fluid">
                             </a>
                         </div>
                         <div class="text-blo3 size21 flex-col-l-m">
@@ -175,7 +175,7 @@
 
 <section  class="section-lunch bgwhite">
     <div class="header-lunch parallax0 parallax100"
-        style="background-image: url('{{ asset('clientpage/images/header-menu-02.jpg') }}');">
+        style="background-image: url('{{ secure_asset('clientpage/images/header-menu-02.jpg') }}');">
         <div class="bg1-overlay t-center p-t-50 p-b-50">
             <h2  class="tit4 t-center">Brunches</h2>
         </div>
@@ -188,7 +188,7 @@
                     <div class="blo3 flex-w flex-col-l-sm m-b-30">
                         <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
                             <a href="{{ route('cart.show', $item->id) }}">
-                                <img src="{{ asset($item->image) }}" alt="IMG-MENU" class="img-fluid">
+                                <img src="{{ asecure_sset($item->image) }}" alt="IMG-MENU" class="img-fluid">
                             </a>
                         </div>
                         <div class="text-blo3 size21 flex-col-l-m">
@@ -212,7 +212,7 @@
 <!-- Section: Supplements -->
 <section class="section-lunch bgwhite">
     <div class="header-lunch parallax0 parallax100"
-    style="background-image: url('{{ asset('clientpage/images/header-menu-02.jpg') }}');">
+    style="background-image: url('{{ secure_asset('clientpage/images/header-menu-02.jpg') }}');">
     <div class="bg1-overlay t-center p-t-50 p-b-50">
             <h2 class="tit4 t-center">Supplements</h2>
         </div>
@@ -225,7 +225,7 @@
                     <div class="blo3 flex-w flex-col-l-sm m-b-30">
                         <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
                             <a href="{{ route('cart.show', $item->id) }}">
-                                <img src="{{ asset( $item->image) }}" alt="IMG-MENU" class="img-fluid">
+                                <img src="{{ secure_asset( $item->image) }}" alt="IMG-MENU" class="img-fluid">
                             </a>
 
                         </div>
