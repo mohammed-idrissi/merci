@@ -115,6 +115,7 @@ class MenuController extends Controller
         $petitsDejeuners = PetitsDejeuner::all();
         return view('admin.menu.petits-dejeuners.index', compact('petitsDejeuners'));
     }
+    
 
     public function indexBrunches()
     {
