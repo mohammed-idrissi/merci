@@ -41,7 +41,7 @@
         <form action="{{ secure_url(route('appartement.appartementValid', ['id' => $room->id])) }}" method="GET">
             @csrf
             <div class="card">
-                <img src="{{ asset($room->image) }}" alt="{{ $room->nom }}">
+                <img src="{{ url('storage/' . $room->image) }}" alt="{{ $room->nom }}">
                 <div class="card-info">
                     <h3>{{ $room->nom }}</h3>
                     <p>{{ $room->description }}</p>
