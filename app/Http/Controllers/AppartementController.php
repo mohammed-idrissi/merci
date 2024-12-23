@@ -26,7 +26,8 @@ class AppartementController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $validatedData['image'] = $request->file('image')->store('images', 'public');
+            // حفظ الصورة في public/images/appartements
+            $validatedData['image'] = $request->file('image')->move(public_path('images/appartements'), $request->file('image')->getClientOriginalName());
         }
 
         CreateAppartement::create($validatedData);
@@ -47,7 +48,8 @@ class AppartementController extends Controller
         $room = CreateAppartement::findOrFail($id);
 
         if ($request->hasFile('image')) {
-            $validatedData['image'] = $request->file('image')->store('images', 'public');
+            // حفظ الصورة في public/images/appartements
+            $validatedData['image'] = $request->file('image')->move(public_path('images/appartements'), $request->file('image')->getClientOriginalName());
         }
 
         $room->update($validatedData);
@@ -60,7 +62,6 @@ class AppartementController extends Controller
         $price = request()->query('price');  // الوصول إلى الثمن من الرابط
         return view('appartement.appartementValid', compact('price'));
     }
-
 
     public function adminRooms()
     {
@@ -88,16 +89,15 @@ class AppartementController extends Controller
         return view('appartement.appartementValid', compact('room', 'price'));
     }
 
-
     public function showRooms()
     {
         $rooms = CreateAppartement::all();
         return view('appartement.appartementValid', compact('rooms'));
     }
-    public function show($id)
-{
-    $room = CreateAppartement::findOrFail($id);
-    return view('appartement.show', compact('room'));
-}
 
+    public function show($id)
+    {
+        $room = CreateAppartement::findOrFail($id);
+        return view('appartement.show', compact('room'));
+    }
 }
