@@ -149,7 +149,7 @@ Route::post('/reservations', [ReservationController::class, 'store'])->name('res
 
 
 /// مسارات خاصة بالشقق (Appartements)
-Route::resource('appartement', AppartementController::class);
+Route::resource('appartements', AppartementController::class)->except(['show']);
 
 Route::resource('appartements', CreateAppartementController::class);
 Route::post('/appartements/store', [CreateAppartementController::class, 'store'])->name('appartements.store');

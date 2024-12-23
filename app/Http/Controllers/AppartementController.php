@@ -94,4 +94,10 @@ class AppartementController extends Controller
         $rooms = CreateAppartement::all();
         return view('appartement.appartementValid', compact('rooms'));
     }
+    public function show($id)
+{
+    $room = CreateAppartement::findOrFail($id);
+    return view('appartement.show', compact('room'));
+}
+
 }
