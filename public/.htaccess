@@ -1,23 +1,34 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine On
+# تفعيل إعادة الكتابة
+RewriteEngine On
 
-    # السماح بالوصول المباشر للملفات الموجودة فعليًا (صور، CSS، JS)
-    RewriteCond %{REQUEST_FILENAME} -f
-    RewriteRule ^ - [L]
+# إعادة التوجيه من HTTP إلى HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-    # توجيه الطلبات الأخرى إلى public/index.php
-    RewriteRule ^ public/index.php [L]
-</IfModule>
-
+# إعدادات أخرى لتحسين الأداء والأمان
 <IfModule mod_headers.c>
-    # السماح بالتخزين المؤقت للمتصفح
-    <FilesMatch "\.(ico|jpg|jpeg|png|gif|css|js|woff|woff2|ttf|svg|eot|otf|ttf|webp|mp4|webm|ogg|mp3|wav|flac)$">
+    # تمكين التخزين المؤقت للمتصفح
+    <FilesMatch "\.(jpg|jpeg|png|gif|css|js|ico|webp|woff|woff2|ttf|svg)$">
         Header set Cache-Control "max-age=31536000, public"
     </FilesMatch>
+
+    # تفعيل X-Content-Type-Options لتجنب مشاكل أنواع المحتوى
+    Header set X-Content-Type-Options "nosniff"
+
+    # تفعيل X-Frame-Options لمنع التضمين
+    Header always append X-Frame-Options SAMEORIGIN
+
+    # تفعيل X-XSS-Protection لتجنب هجمات XSS
+    Header set X-XSS-Protection "1; mode=block"
 </IfModule>
 
-# حماية ملفات النظام من الوصول العام
-<FilesMatch "^(artisan|composer\.(json|lock)|\.env)$">
+# منع الوصول إلى ملفات .env و .htaccess مباشرة
+<FilesMatch "(\.env|\.htaccess)">
     Order allow,deny
     Deny from all
 </FilesMatch>
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
