@@ -12,7 +12,7 @@ text-align: center;
 text-shadow: 0px 0 20px black;">
 create supplement    </h2>
 </section>
-    <form action="{{ route('admin.menu.store-supplement') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{secure_url( route('admin.menu.store-supplement')) }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="form-group">

@@ -15,7 +15,7 @@
 create brunch    </h2>
     </section>
 
-    <form action="{{ route('admin.menu.store-brunch') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{secure_url( route('admin.menu.store-brunch') )}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="nom">Nom</label>

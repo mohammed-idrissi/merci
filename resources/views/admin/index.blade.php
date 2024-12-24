@@ -22,7 +22,7 @@
                 <td>{{ $appartement->description }}</td>
                 <td>{{ $appartement->prix }} € / nuit</td>
                 <td class="action-buttons">
-                    <form action="{{ route('appartements.destroy', $appartement->id) }}" method="POST" style="display: inline;">
+                    <form action="{{secure_url(rout('appartements.destroy', $appartement->id)) }}" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn delete">Supprimer</button>

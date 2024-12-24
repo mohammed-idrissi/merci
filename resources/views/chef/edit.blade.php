@@ -1,6 +1,6 @@
 @extends('Admins.indexAdmin')
 @section('content')
-    <form action="{{ route('chef.update', $chef->id) }}" class="container" method="post" enctype="multipart/form-data">
+    <form action="{{ route(secure_url('chef.update', $chef->id) )}}" class="container" method="post" enctype="multipart/form-data">
         @csrf
         @method('put')
         <br />
