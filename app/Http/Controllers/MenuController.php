@@ -13,19 +13,16 @@ class MenuController extends Controller
     {
         $brunch = Brunch::all();
         $petitsDejeuners = PetitsDejeuner::all();
-        $supplements = Supplement::all(); // استرجاع بيانات Supplements
+        $supplements = Supplement::all();
 
-        // تمرير البيانات إلى الفيو
         return view('client.menu.voirmenu', compact('petitsDejeuners', 'brunch', 'supplements'));
     }
 
-    // عرض النماذج لإنشاء Petits Dejeuners
     public function createPetitsDejeuner()
     {
         return view('admin.menu.create-petits-dejeuner');
     }
 
-    // تخزين البيانات الخاصة بـ Petits Dejeuners
     public function storePetitsDejeuner(Request $request)
     {
         $request->validate([
@@ -35,16 +32,7 @@ class MenuController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // التحقق من وجود الملف المرفوع
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            // حفظ الصورة في public/images/petits-dejeuners
-            $image->move(public_path('images/petits-dejeuners'), $imageName);
-            $imagePath = 'images/petits-dejeuners/' . $imageName;
-        } else {
-            $imagePath = null; // في حال لم يتم رفع صورة
-        }
+        $imagePath = $this->uploadImage($request, 'images/petits-dejeuners');
 
         PetitsDejeuner::create([
             'nom' => $request->nom,
@@ -55,8 +43,6 @@ class MenuController extends Controller
 
         return redirect()->route('admin.menu.petits-dejeuners.index');
     }
-
-    // تكرار نفس العمليات لـ Brunch و Supplements
 
     public function createBrunch()
     {
@@ -72,16 +58,7 @@ class MenuController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // التحقق من وجود الملف المرفوع
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            // حفظ الصورة في public/images/brunches
-            $image->move(public_path('images/brunches'), $imageName);
-            $imagePath = 'images/brunches/' . $imageName;
-        } else {
-            $imagePath = null; // في حال لم يتم رفع صورة
-        }
+        $imagePath = $this->uploadImage($request, 'images/brunches');
 
         Brunch::create([
             'nom' => $request->nom,
@@ -107,16 +84,7 @@ class MenuController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // التحقق من وجود الملف المرفوع
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            // حفظ الصورة في public/images/supplements
-            $image->move(public_path('images/supplements'), $imageName);
-            $imagePath = 'images/supplements/' . $imageName;
-        } else {
-            $imagePath = null; // في حال لم يتم رفع صورة
-        }
+        $imagePath = $this->uploadImage($request, 'images/supplements');
 
         Supplement::create([
             'nom' => $request->nom,
@@ -144,5 +112,16 @@ class MenuController extends Controller
     {
         $brunches = Brunch::all();
         return view('admin.menu.brunches.index', compact('brunches'));
+    }
+
+    private function uploadImage(Request $request, $directory)
+    {
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path($directory), $imageName);
+            return $directory . '/' . $imageName;
+        }
+        return null;
     }
 }
