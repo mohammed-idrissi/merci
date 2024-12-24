@@ -123,4 +123,12 @@ class AppartementController extends Controller
 
         return $existingImage;
     }
+    public function validateAppartement($id)
+{
+    $room = CreateAppartement::findOrFail($id);
+    $price = $room->prix;
+
+    return view('appartement.validate', ['price' => $price]);
+}
+
 }
