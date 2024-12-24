@@ -96,10 +96,11 @@ class AppartementController extends Controller
     public function validation($id)
     {
         $room = CreateAppartement::findOrFail($id);
-
         $price = $room->prix;
+
         return view('appartement.appartementValid', ['price' => $price]);
     }
+
     public function Validation2($id)
     {
         $room = CreateAppartement::findOrFail($id);

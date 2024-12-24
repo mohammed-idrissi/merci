@@ -161,6 +161,7 @@ Route::get('/appartements/{id}/edit', [CreateAppartementController::class, 'edit
 Route::get('/appartement/{id}/edit', [AppartementController::class, 'edit'])->name('appartement.edit');
 
 Route::put('/appartement/{id}', [AppartementController::class, 'update'])->name('appartement.update');
+Route::get('/appartement/validation/{id}', [AppartementController::class, 'validation'])->name('appartement.validation');
 
 
 // مسارات إضافية للشقق (إذا كانت لها وظائف مميزة)
