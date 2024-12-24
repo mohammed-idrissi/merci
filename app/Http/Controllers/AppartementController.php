@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -7,17 +6,20 @@ use App\Models\CreateAppartement;
 
 class AppartementController extends Controller
 {
+    // عرض الشقق
     public function index()
     {
         $rooms = CreateAppartement::all();
         return view('appartement.index', compact('rooms'));
     }
 
+    // صفحة إنشاء شقة جديدة
     public function create()
     {
         return view('appartement.create');
     }
 
+    // تخزين شقة جديدة في قاعدة البيانات
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -37,12 +39,14 @@ class AppartementController extends Controller
         return redirect()->route('appartement.index')->with('success', 'Appartement ajouté avec succès!');
     }
 
+    // صفحة تعديل الشقة
     public function edit($id)
     {
         $room = CreateAppartement::findOrFail($id);
         return view('appartement.edit', compact('room'));
     }
 
+    // تحديث الشقة في قاعدة البيانات
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
@@ -63,6 +67,7 @@ class AppartementController extends Controller
         return redirect()->route('appartement.index')->with('success', 'Appartement mis à jour avec succès!');
     }
 
+    // حذف الشقة
     public function destroy($id)
     {
         $room = CreateAppartement::findOrFail($id);
@@ -76,23 +81,21 @@ class AppartementController extends Controller
         return redirect()->route('appartement.index')->with('success', 'Appartement supprimé avec succès!');
     }
 
-
+    // عرض تفاصيل شقة معينة
     public function show($id)
     {
         $room = CreateAppartement::findOrFail($id);
         return view('appartement.show', compact('room'));
     }
 
-    public function adminIndex()
-    {
-        $rooms = CreateAppartement::all();
-        return view('admin.rooms.index', compact('rooms'));
-    }
+    // عرض الشقق في قسم الإدارة
     public function appartementAdmin()
     {
         $rooms = CreateAppartement::all();
         return view('appartement.admin', compact('rooms'));
     }
+
+    // التحقق من صحة الشقة
     public function validation($id)
     {
         $room = CreateAppartement::findOrFail($id);
@@ -101,6 +104,7 @@ class AppartementController extends Controller
         return view('appartement.appartementValid', ['price' => $price]);
     }
 
+    // التحقق من صحة الشقة (دالة أخرى مشابهة)
     public function Validation2($id)
     {
         $room = CreateAppartement::findOrFail($id);
@@ -109,6 +113,16 @@ class AppartementController extends Controller
         return view('appartement.appartementValid', ['price' => $price]);
     }
 
+    // إضافة شقة جديدة (تحقق إضافي)
+    public function validateAppartement($id)
+    {
+        $room = CreateAppartement::findOrFail($id);
+        $price = $room->prix;
+
+        return view('appartement.validate', ['price' => $price]);
+    }
+
+    // رفع الصورة
     private function uploadImage(Request $request, $directory, $existingImage = null)
     {
         if ($request->hasFile('image')) {
@@ -124,12 +138,4 @@ class AppartementController extends Controller
 
         return $existingImage;
     }
-    public function validateAppartement($id)
-{
-    $room = CreateAppartement::findOrFail($id);
-    $price = $room->prix;
-
-    return view('appartement.validate', ['price' => $price]);
-}
-
 }
