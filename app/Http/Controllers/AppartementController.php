@@ -93,10 +93,19 @@ class AppartementController extends Controller
         $rooms = CreateAppartement::all();
         return view('appartement.admin', compact('rooms'));
     }
-    public function validation()
+    public function validation($id)
     {
-        $cartItems = session('cartItems', []);
-        return view('appartement.appartementValid', compact('cartItems'));
+        $room = CreateAppartement::findOrFail($id);
+
+        $price = $room->prix;
+        return view('appartement.appartementValid', ['price' => $price]);
+    }
+    public function Validation2($id)
+    {
+        $room = CreateAppartement::findOrFail($id);
+        $price = $room->prix;
+
+        return view('appartement.appartementValid', ['price' => $price]);
     }
 
     private function uploadImage(Request $request, $directory, $existingImage = null)

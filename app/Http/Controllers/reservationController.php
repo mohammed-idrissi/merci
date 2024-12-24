@@ -30,26 +30,33 @@ class reservationController extends Controller
 
     public function store(Request $request)
     {
-      $this->validate($request,[
-          'date'=>'required',
-          'heure'=>'required',
-          'gens'=>'required',
-          'nom'=>'required',
-          'phone'=>'required',
-          'email'=>'required'
-      ]);
-      $reservation=Reservation::create([
-        'date'=>$request->date,
-        'heure'=>$request->heure,
-        'gens'=>$request->gens,
-        'nom'=>$request->nom,
-        'phone'=>$request->phone,
-        'email'=>$request->email
-      ]);
-      $profile=Profil::where('id_user',Auth::id())->first();
-      return redirect()->route('reservation.index')->with('succes', 'updated succeffly')
-      ->with('profile',$profile);
+        // التحقق من صحة البيانات
+        $this->validate($request, [
+            'date' => 'required',
+            'heure' => 'required',
+            'gens' => 'required',
+            'nom' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+        ]);
 
+        // إنشاء الحجز
+        $reservation = Reservation::create([
+            'date' => $request->date,
+            'heure' => $request->heure,
+            'gens' => $request->gens,
+            'nom' => $request->nom,
+            'phone' => $request->phone,
+            'email' => $request->email,
+        ]);
+
+        // جلب الملف الشخصي
+        $profile = Profil::where('id_user', Auth::id())->first();
+
+        // إعادة التوجيه إلى الصفحة الرئيسية مع رسالة نجاح
+        return redirect()->route('clientIndex.index')
+            ->with('success', 'تم الحجز بنجاح!')
+            ->with('profile', $profile);
     }
 
     public function show( $id)
