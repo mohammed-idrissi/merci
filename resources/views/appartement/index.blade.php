@@ -53,6 +53,7 @@
                         {{ str_repeat('☆', 5 - $room->etoiles) }}
                     </div>
                     <p class="extra-info">{{ $room->extra_info }}</p>
+                    
                     <input type="hidden" name="price" value="{{ $room->prix }}">
                     <button class="btn" type="submit">Réserver</button>
                 </div>
