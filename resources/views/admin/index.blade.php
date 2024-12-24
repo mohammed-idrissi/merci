@@ -22,12 +22,12 @@
                 <td>{{ $appartement->description }}</td>
                 <td>{{ $appartement->prix }} € / nuit</td>
                 <td class="action-buttons">
-                    <a href="{{ route('appartements.edit', $appartement->id) }}" class="btn edit">Modifier</a>
                     <form action="{{ route('appartements.destroy', $appartement->id) }}" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn delete">Supprimer</button>
                     </form>
+
                 </td>
             </tr>
             @endforeach

@@ -49,6 +49,8 @@ appartements     </h2>
                     <th>Description</th>
                     <th>Prix</th>
                     <th>Étoiles</th>
+                    <th>Image</th>
+
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -63,15 +65,18 @@ appartements     </h2>
                                 ⭐
                             @endfor
                         </td>
+                        <td><img src="{{ $room->image }}" alt="img"> </td>
+
                         <td>
                             <!-- Liens pour les actions comme modifier et supprimer -->
                             <a href="{{ route('appartement.edit', $room->id) }}" class="btn btn-primary btn-sm">Modifier</a>
                             <!-- داخل الفيو admin.blade.php -->
-                        <form action="{{ secure_url(route('appartement.destroy', $room->id) )}}" method="POST" style="display:inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet appartement?')">Supprimer</button>
-                        </form>
+                            <form action="{{ route('appartement.destroy', $room->id) }}" method="POST" style="display:inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet appartement?')">Supprimer</button>
+                            </form>
+
 
                         </td>
                     </tr>

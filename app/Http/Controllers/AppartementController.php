@@ -75,6 +75,7 @@ class AppartementController extends Controller
 
         return redirect()->route('appartement.index')->with('success', 'Appartement supprimé avec succès!');
     }
+    
 
     public function show($id)
     {
