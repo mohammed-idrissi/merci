@@ -32,20 +32,16 @@ class CreateAppartementController extends Controller
             'extra_info' => 'nullable|string|max:255',
         ]);
 
-        // التعامل مع الصورة إذا كانت موجودة
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images'), $imageName);
             $validatedData['image'] = 'images/' . $imageName;
         }
 
-        // إضافة القيمة الافتراضية للـ etoiles إذا لم تكن موجودة
         $validatedData['etoiles'] = $validatedData['etoiles'] ?? 3;
 
-        // إضافة البيانات إلى قاعدة البيانات
         CreateAppartement::create($validatedData);
 
-        // إعادة التوجيه إلى الصفحة الرئيسية مع رسالة نجاح
         return redirect()->route('appartements.index')->with('success', 'Appartement créé avec succès !');
     }
 
@@ -70,14 +66,12 @@ class CreateAppartementController extends Controller
 
         $appartement = CreateAppartement::findOrFail($id);
 
-        // التعامل مع الصورة إذا كانت موجودة
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images'), $imageName);
             $validated['image'] = 'images/' . $imageName;
         }
 
-        // تحديث البيانات في قاعدة البيانات
         $appartement->update($validated);
 
         return redirect()->route('appartements.index')->with('success', 'Appartement mis à jour avec succès');

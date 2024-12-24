@@ -13,66 +13,28 @@ class AppartementController extends Controller
         return view('appartement.index', compact('rooms'));
     }
 
+    public function create()
+    {
+        return view('appartement.create');
+    }
+
     public function store(Request $request)
     {
         $validatedData = $request->validate([
             'nom' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
             'description' => 'required|string',
-            'image' => 'nullable|file|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'prix' => 'required|numeric',
             'etoiles' => 'required|integer|min:1|max:5',
             'extra_info' => 'nullable|string',
         ]);
 
-        if ($request->hasFile('image')) {
-            // حفظ الصورة في public/images/appartements
-            $validatedData['image'] = $request->file('image')->move(public_path('images/appartements'), $request->file('image')->getClientOriginalName());
-        }
+        $validatedData['image'] = $this->uploadImage($request, 'images/appartements');
 
         CreateAppartement::create($validatedData);
 
-        return redirect()->back()->with('success', 'Réservation effectuée avec succès!');
-    }
-
-    public function update(Request $request, $id)
-    {
-        $validatedData = $request->validate([
-            'nom' => 'required|string|max:255',
-            'description' => 'required|string',
-            'prix' => 'required|numeric',
-            'etoiles' => 'required|integer|min:1|max:5',
-            'extra_info' => 'nullable|string',
-        ]);
-
-        $room = CreateAppartement::findOrFail($id);
-
-        if ($request->hasFile('image')) {
-            // حفظ الصورة في public/images/appartements
-            $validatedData['image'] = $request->file('image')->move(public_path('images/appartements'), $request->file('image')->getClientOriginalName());
-        }
-
-        $room->update($validatedData);
-
-        return redirect()->route('appartement.index')->with('success', 'Appartement mis à jour avec succès!');
-    }
-
-    public function validation()
-    {
-        $price = request()->query('price');  // الوصول إلى الثمن من الرابط
-        return view('appartement.appartementValid', compact('price'));
-    }
-
-    public function adminRooms()
-    {
-        $rooms = CreateAppartement::all();
-        return view('admin.rooms.index', compact('rooms'));
-    }
-
-    public function appartementAdmin()
-    {
-        $rooms = CreateAppartement::all();
-        return view('appartement.admin', compact('rooms'));
+        return redirect()->route('appartement.index')->with('success', 'Appartement ajouté avec succès!');
     }
 
     public function edit($id)
@@ -81,23 +43,64 @@ class AppartementController extends Controller
         return view('appartement.edit', compact('room'));
     }
 
-    public function Validation2($id)
+    public function update(Request $request, $id)
     {
-        $room = CreateAppartement::findOrFail($id);
-        $price = $room->prix;
+        $validatedData = $request->validate([
+            'nom' => 'required|string|max:255',
+            'prenom' => 'nullable|string|max:255',
+            'description' => 'required|string',
+            'prix' => 'required|numeric',
+            'etoiles' => 'required|integer|min:1|max:5',
+            'extra_info' => 'nullable|string',
+        ]);
 
-        return view('appartement.appartementValid', compact('room', 'price'));
+        $room = CreateAppartement::findOrFail($id);
+
+        $validatedData['image'] = $this->uploadImage($request, 'images/appartements', $room->image);
+
+        $room->update($validatedData);
+
+        return redirect()->route('appartement.index')->with('success', 'Appartement mis à jour avec succès!');
     }
 
-    public function showRooms()
+    public function destroy($id)
     {
-        $rooms = CreateAppartement::all();
-        return view('appartement.appartementValid', compact('rooms'));
+        $room = CreateAppartement::findOrFail($id);
+
+        if ($room->image && file_exists(public_path($room->image))) {
+            unlink(public_path($room->image));
+        }
+
+        $room->delete();
+
+        return redirect()->route('appartement.index')->with('success', 'Appartement supprimé avec succès!');
     }
 
     public function show($id)
     {
         $room = CreateAppartement::findOrFail($id);
         return view('appartement.show', compact('room'));
+    }
+
+    public function adminIndex()
+    {
+        $rooms = CreateAppartement::all();
+        return view('admin.rooms.index', compact('rooms'));
+    }
+
+    private function uploadImage(Request $request, $directory, $existingImage = null)
+    {
+        if ($request->hasFile('image')) {
+            if ($existingImage && file_exists(public_path($existingImage))) {
+                unlink(public_path($existingImage));
+            }
+
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path($directory), $imageName);
+            return $directory . '/' . $imageName;
+        }
+
+        return $existingImage;
     }
 }
