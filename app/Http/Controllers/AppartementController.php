@@ -75,7 +75,7 @@ class AppartementController extends Controller
 
         return redirect()->route('appartement.index')->with('success', 'Appartement supprimé avec succès!');
     }
-    
+
 
     public function show($id)
     {
@@ -93,7 +93,11 @@ class AppartementController extends Controller
         $rooms = CreateAppartement::all();
         return view('appartement.admin', compact('rooms'));
     }
-
+    public function validation()
+    {
+        $cartItems = session('cartItems', []);
+        return view('appartement.appartementValid', compact('cartItems'));
+    }
 
     private function uploadImage(Request $request, $directory, $existingImage = null)
     {
