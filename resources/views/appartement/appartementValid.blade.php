@@ -176,13 +176,7 @@ telles que les détails de livraison et les préférences spéciales, pour que n
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-centered mb-0 table-nowrap">
-                            <thead>
-                                <tr>
-                                    <th class="border-top-0" style="width: 33%; text-align: center;" scope="col" colspan="2">Produit</th>
-                                    <th class="border-top-0" style="width: 33%; text-align: center;" scope="col">Prix</th>
-                                </tr>
-                            </thead>
+
                             <tbody>
 
 
@@ -200,8 +194,6 @@ telles que les détails de livraison et les préférences spéciales, pour que n
                                 <p>Le prix est indisponible.</p>
                             @endif
 
-                            </tbody>
-                        </table>
 
 
                         <script>
@@ -289,8 +281,8 @@ telles que les détails de livraison et les préférences spéciales, pour que n
 
                     <div class="valret mt-4">
                         <div class="ret">
-                            <a href="clientMenu" class="btn btn-link text-muted ContinueSH">
-                                <i class="mdi mdi-arrow-left me-1"></i> Retour au menu </a>
+                            <a href="ApparetementIndex" class="btn btn-link text-muted ContinueSH">
+                                <i class="mdi mdi-arrow-left me-1"></i> Retour  </a>
                         </div>
                         <div >
                             <button type="submit" class="btn3 flex-c-m size13 txt11 trans-0-4">

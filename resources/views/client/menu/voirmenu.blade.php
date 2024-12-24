@@ -189,6 +189,7 @@
                         <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
                             <a href="{{ route('cart.show', $item->id) }}">
                                 <img src="{{ secure_asset($item->image) }}" alt="IMG-MENU" class="img-fluid">
+
                             </a>
                         </div>
                         <div class="text-blo3 size21 flex-col-l-m">

@@ -16,6 +16,7 @@
             <div class="mb-4" >
                 {{-- Merci Laayoune --}}
                 <img class="mercilogo-autre" src="{{ secure_asset('clientpage/images/MERCI_IMG/LOGO/Logo-Merci-b1.png') }}" alt="" >
+
             </div>
 
             <div style="    display: flex;
@@ -41,11 +42,12 @@
         <form action="{{ secure_url(route('appartement.appartementValid', ['id' => $room->id])) }}" method="GET">
             @csrf
             <div class="card">
-                <img src="{{ url('storage/' . $room->image) }}" alt="{{ $room->nom }}">
+                <img src="{{ secure_asset($room->image) }}" alt="{{ $room->nom }}">
+
                 <div class="card-info">
                     <h3>{{ $room->nom }}</h3>
                     <p>{{ $room->description }}</p>
-                    <p class="price">Prix: {{ $room->prix }}€ / nuit</p>
+                    <p class="price">Prix: {{ $room->prix }}MAD / nuit</p>
                     <div class="stars">
                         {{ str_repeat('★', $room->etoiles) }}
                         {{ str_repeat('☆', 5 - $room->etoiles) }}

@@ -45,10 +45,14 @@ Liste des Brunchs    </h2>
                     <td>{{ $brunch->nom }}</td>
                     <td>{{ \Illuminate\Support\Str::limit($brunch->description, 50) }}</td>
                     <td>{{ $brunch->prix }} MAD</td>
-                    <img src="{{ secure_asset($brunch->image) }}" alt="Image" width="100">
-                    <td>
-                        <a href="#" class="btn btn-danger">Supprimer</a>
-                    </td>
+              <td>      <img src="{{ secure_asset($brunch->image) }}" alt="Image" width="100"></td>
+              <td class="action-buttons">
+                <form action="{{ secure_url(route('brunch.destroy', $brunch->id)) }}" method="POST" style="display: inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn delete">Supprimer</button>
+                </form>
+            </td>
                 </tr>
             @endforeach
         </tbody>

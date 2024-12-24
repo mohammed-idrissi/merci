@@ -44,10 +44,15 @@ text-shadow: 0px 0 20px black;">
                 <tr>
                     <td>{{ $petitDejeuner->nom }}</td>
                     <td>{{ $petitDejeuner->description }}</td>
-                    <td>{{ $petitDejeuner->prix }} د.م</td>
-                    <td><img src="{{ asset('storage/' . $petitDejeuner->image) }}" alt="Image" width="100"></td>
-                    <td>
-                        <a href="#" class="btn btn-danger">Suuprimer</a>
+                    <td>{{ $petitDejeuner->prix }} MAD</td>
+                    <td> <img src="{{ secure_asset($petitDejeuner->image) }}" width="100" alt="{{ $petitDejeuner->nom }}"></td>
+
+                    <td class="action-buttons">
+                        <form action="{{ secure_url(route('petitDejeuner.destroy', $petitDejeuner->id)) }}" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn delete">Supprimer</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
