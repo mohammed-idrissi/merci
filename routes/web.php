@@ -146,7 +146,6 @@ Route::post('/reservations', [ReservationController::class, 'store'])->name('res
 
 
 
-
 Route::resource('appartements', AppartementController::class)->except(['show']);
 
 // المسارات المتعلقة بالتأكيد والعملية الخاصة بالشقق
@@ -165,7 +164,6 @@ Route::put('/appartement/{id}', [AppartementController::class, 'update'])->name(
 Route::delete('/appartement/{id}', [AppartementController::class, 'destroy'])->name('appartement.destroy');
 Route::get('/ApparetementIndex', [AppartementController::class, 'index'])->name('Apparetementindex');
 Route::get('/menu/voirmenu', [MenuController::class, 'voirmenu'])->name('client.menu.voirmenu');
-
 
 Route::prefix('admin/menu')->group(function () {
     // مسارات إنشاء وتخزين PetitsDejeuners
