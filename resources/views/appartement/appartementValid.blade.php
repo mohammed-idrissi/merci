@@ -1,4 +1,4 @@
-@extends('client.command2')
+@extends('client.command')
 
 
 @section('meta')
@@ -126,6 +126,7 @@ telles que les détails de livraison et les préférences spéciales, pour que n
                                                 @enderror
                                             </div>
 
+                                            <button type="submit" class="btn btn-primary">Confirmer la réservation</button>
                                         </div>
 
 
@@ -176,9 +177,17 @@ telles que les détails de livraison et les préférences spéciales, pour que n
                     </div>
 
                     <div class="table-responsive">
-
+                        <table class="table table-centered mb-0 table-nowrap">
+                            <thead>
+                                <tr>
+                                    <th class="border-top-0" style="width: 33%; text-align: center;" scope="col" colspan="2">Produit</th>
+                                    <th class="border-top-0" style="width: 33%; text-align: center;" scope="col">Prix</th>
+                                </tr>
+                            </thead>
                             <tbody>
 
+
+                                <p>ثمن الشقة: {{ $price }}</p>
 
 
 
@@ -189,11 +198,24 @@ telles que les détails de livraison et les préférences spéciales, pour que n
 
 
                                 @if(isset($price))
-                                <p>Prix de la chambre: {{ $price }}DH</p>
+                                <input type="hidden" value="{{ $price }}" name="price" id="total">
+                                <tr class="bg-light">
+                                    <td colspan="2">
+                                        <h5 class="font-size-14 m-0">Total:</h5>
+                                    </td>
+                                    <td style="white-space: nowrap;">
+                                        {{ $price }} DH
+                                    </td>
+                                </tr>
                             @else
-                                <p>Le prix est indisponible.</p>
+                                <tr>
+                                    <td colspan="3">لم يتم العثور على الثمن.</td>
+                                </tr>
                             @endif
 
+
+                            </tbody>
+                        </table>
 
 
                         <script>
@@ -281,8 +303,8 @@ telles que les détails de livraison et les préférences spéciales, pour que n
 
                     <div class="valret mt-4">
                         <div class="ret">
-                            <a href="ApparetementIndex" class="btn btn-link text-muted ContinueSH">
-                                <i class="mdi mdi-arrow-left me-1"></i> Retour  </a>
+                            <a href="clientMenu" class="btn btn-link text-muted ContinueSH">
+                                <i class="mdi mdi-arrow-left me-1"></i> Retour au menu </a>
                         </div>
                         <div >
                             <button type="submit" class="btn3 flex-c-m size13 txt11 trans-0-4">

@@ -1,22 +1,17 @@
+
 <?php
 namespace App\Http\Controllers;
+
 
 use Illuminate\Http\Request;
 use App\Models\CreateAppartement;
 
 class AppartementController extends Controller
 {
-    // عرض الشقق
     public function index()
     {
         $rooms = CreateAppartement::all();
         return view('appartement.index', compact('rooms'));
-    }
-
-    // صفحة إنشاء شقة جديدة
-    public function create()
-    {
-        return view('appartement.create');
     }
 
     // تخزين شقة جديدة في قاعدة البيانات
@@ -38,20 +33,10 @@ class AppartementController extends Controller
 
         return redirect()->route('appartement.index')->with('success', 'Appartement ajouté avec succès!');
     }
-
-    // صفحة تعديل الشقة
-    public function edit($id)
-    {
-        $room = CreateAppartement::findOrFail($id);
-        return view('appartement.edit', compact('room'));
-    }
-
-    // تحديث الشقة في قاعدة البيانات
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
             'nom' => 'required|string|max:255',
-            'prenom' => 'nullable|string|max:255',
             'description' => 'required|string',
             'prix' => 'required|numeric',
             'etoiles' => 'required|integer|min:1|max:5',
@@ -60,82 +45,68 @@ class AppartementController extends Controller
 
         $room = CreateAppartement::findOrFail($id);
 
-        $validatedData['image'] = $this->uploadImage($request, 'images/appartements', $room->image);
+        if ($request->hasFile('image')) {
+            $validatedData['image'] = $request->file('image')->store('images', 'public');
+        }
 
         $room->update($validatedData);
 
         return redirect()->route('appartement.index')->with('success', 'Appartement mis à jour avec succès!');
     }
 
-    // حذف الشقة
-    public function destroy($id)
+    public function validation()
     {
-        $room = CreateAppartement::findOrFail($id);
-
-        if ($room->image && file_exists(public_path($room->image))) {
-            unlink(public_path($room->image));
-        }
-
-        $room->delete();
-
-        return redirect()->route('appartement.index')->with('success', 'Appartement supprimé avec succès!');
+        $cartItems = session('cartItems', []);
+        return view('appartement.appartementValid', compact('cartItems'));
     }
 
-    // عرض تفاصيل شقة معينة
-    public function show($id)
+    public function adminRooms()
     {
-        $room = CreateAppartement::findOrFail($id);
-        return view('appartement.show', compact('room'));
+        $rooms = CreateAppartement::all();
+        return view('admin.rooms.index', compact('rooms'));
     }
 
-    // عرض الشقق في قسم الإدارة
     public function appartementAdmin()
     {
         $rooms = CreateAppartement::all();
         return view('appartement.admin', compact('rooms'));
     }
 
-    // التحقق من صحة الشقة
-    public function validation($id)
+    public function edit($id)
     {
         $room = CreateAppartement::findOrFail($id);
-        $price = $room->prix;
-
-        return view('appartement.appartementValid', ['price' => $price]);
+        return view('appartement.edit', compact('room'));
     }
 
-    // التحقق من صحة الشقة (دالة أخرى مشابهة)
     public function Validation2($id)
-    {
-        $room = CreateAppartement::findOrFail($id);
-        $price = $room->prix;
+{
+    $room = CreateAppartement::findOrFail($id);
+    $price = $room->prix;
 
-        return view('appartement.appartementValid', ['price' => $price]);
+    return view('appartement.appartementValid', ['price' => $price]);
+}
+
+
+    public function showRooms()
+    {
+        $rooms = CreateAppartement::all();
+        return view('appartement.appartementValid', compact('rooms'));
     }
+        // رفع الصورة
+        private function uploadImage(Request $request, $directory, $existingImage = null)
+        {
+            if ($request->hasFile('image')) {
+                if ($existingImage && file_exists(public_path($existingImage))) {
+                    unlink(public_path($existingImage));
+                }
 
-    // إضافة شقة جديدة (تحقق إضافي)
-    public function validateAppartement($id)
-    {
-        $room = CreateAppartement::findOrFail($id);
-        $price = $room->prix;
-
-        return view('appartement.validate', ['price' => $price]);
-    }
-
-    // رفع الصورة
-    private function uploadImage(Request $request, $directory, $existingImage = null)
-    {
-        if ($request->hasFile('image')) {
-            if ($existingImage && file_exists(public_path($existingImage))) {
-                unlink(public_path($existingImage));
+                $image = $request->file('image');
+                $imageName = time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path($directory), $imageName);
+                return $directory . '/' . $imageName;
             }
 
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path($directory), $imageName);
-            return $directory . '/' . $imageName;
+            return $existingImage;
         }
-
-        return $existingImage;
-    }
 }
+
