@@ -39,29 +39,30 @@
 
     <div class="card-container">
         @foreach($rooms as $room)
-        <form action="{{ secure_url(route('appartement.appartementValid', ['id' => $room->id])) }}" method="GET">
-            @csrf
-            <div class="card">
-                <img src="{{ secure_asset($room->image) }}" alt="{{ $room->nom }}">
+            <form action="{{ route('appartement.appartementValid', ['id' => $room->id]) }}" method="GET">
+                @csrf
+                <div class="card">
+                    <img src="{{ secure_asset($room->image) }}" alt="{{ $room->nom }}">
 
+                    <div class="card-info">
+                        <h3>{{ $room->nom }}</h3>
+                        <p>{{ $room->description }}</p>
+                        <p class="price">Prix: {{ $room->prix }}MAD / nuit</p>
+                        <div class="stars">
+                            {{ str_repeat('★', $room->etoiles) }}
+                            {{ str_repeat('☆', 5 - $room->etoiles) }}
+                        </div>
+                        <p class="extra-info">{{ $room->extra_info }}</p>
 
-                <div class="card-info">
-                    <h3>{{ $room->nom }}</h3>
-                    <p>{{ $room->description }}</p>
-                    <p class="price">Prix: {{ $room->prix }}MAD / nuit</p>
-                    <div class="stars">
-                        {{ str_repeat('★', $room->etoiles) }}
-                        {{ str_repeat('☆', 5 - $room->etoiles) }}
+                        <input type="hidden" name="price" value="{{ $room->prix }}">
+                        <button class="btn" type="submit">Réserver</button>
                     </div>
-                    <p class="extra-info">{{ $room->extra_info }}</p>
-
-                    <input type="hidden" name="price" value="{{ $room->prix }}">
-                    <button class="btn" type="submit">Réserver</button>
                 </div>
-            </div>
-        </form>
+            </form>
         @endforeach
     </div>
+
+    
 </div>
 
 
