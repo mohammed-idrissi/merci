@@ -160,7 +160,7 @@
                                 {{ $item->description }}
                             </span>
                             <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-                                <span class="txt22">{{ $item->prix }} DHs</span>
+                                <span class="txt22">{{ $item->prix }} MAD</span>
                             </div>
                         </div>
                     </div>
@@ -200,7 +200,7 @@
                                 {{ $item->description }}
                             </span>
                             <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-                                <span class="txt22">{{ $item->prix }} DHs</span>
+                                <span class="txt22">{{ $item->prix }} MAD</span>
                             </div>
                         </div>
                     </div>
@@ -238,7 +238,7 @@
                                 {{ $item->description }}
                             </span>
                             <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-                                <span class="txt22">{{ $item->prix }} DHs</span>
+                                <span class="txt22">{{ $item->prix }} MAD</span>
                             </div>
                         </div>
                     </div>

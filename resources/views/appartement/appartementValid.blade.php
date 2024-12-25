@@ -126,7 +126,6 @@ telles que les détails de livraison et les préférences spéciales, pour que n
                                                 @enderror
                                             </div>
 
-                                            <button type="submit" class="btn btn-primary">Confirmer la réservation</button>
                                         </div>
 
 
@@ -177,17 +176,8 @@ telles que les détails de livraison et les préférences spéciales, pour que n
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-centered mb-0 table-nowrap">
-                            <thead>
-                                <tr>
-                                    <th class="border-top-0" style="width: 33%; text-align: center;" scope="col" colspan="2">Produit</th>
-                                    <th class="border-top-0" style="width: 33%; text-align: center;" scope="col">Prix</th>
-                                </tr>
-                            </thead>
-                            <tbody>
 
 
-                                <p>ثمن الشقة: {{ $price }}</p>
 
 
 
@@ -204,18 +194,16 @@ telles que les détails de livraison et les préférences spéciales, pour que n
                                         <h5 class="font-size-14 m-0">Total:</h5>
                                     </td>
                                     <td style="white-space: nowrap;">
-                                        {{ $price }} DH
+                                        {{ $price }} MAD
                                     </td>
                                 </tr>
                             @else
                                 <tr>
-                                    <td colspan="3">لم يتم العثور على الثمن.</td>
+                                    <td colspan="3">prix !!</td>
                                 </tr>
                             @endif
 
 
-                            </tbody>
-                        </table>
 
 
                         <script>
@@ -303,8 +291,8 @@ telles que les détails de livraison et les préférences spéciales, pour que n
 
                     <div class="valret mt-4">
                         <div class="ret">
-                            <a href="clientMenu" class="btn btn-link text-muted ContinueSH">
-                                <i class="mdi mdi-arrow-left me-1"></i> Retour au menu </a>
+                            <a href="ApparetementIndex" class="btn btn-link text-muted ContinueSH">
+                                <i class="mdi mdi-arrow-left me-1"></i> Retour  </a>
                         </div>
                         <div >
                             <button type="submit" class="btn3 flex-c-m size13 txt11 trans-0-4">

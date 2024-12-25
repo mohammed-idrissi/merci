@@ -11,7 +11,7 @@
 
     <div class="container">
         <div class="row p-t-108 p-b-70">
-            
+
                 @foreach ($lunches as $item)
                     <div class="col-md-8 col-lg-6 m-l-r-auto">
                         <div class="blo3 flex-w flex-col-l-sm m-b-30">
@@ -34,20 +34,20 @@
                                 justify-content: space-between;
                                 width: 100%;">
                                     <span class="txt22 ">
-                                        {{ $item->prix }} DHs
+                                        {{ $item->prix }} MAD
                                     </span>
-                                    
+
                                         <a href="{{ route('cart.show', $item->id) }}" class="btn3 flex-c-m size13 txt11 trans-0-4" >
-                                    commander</a> 
-                                    
+                                    commander</a>
+
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
                 @endforeach
-            
-            
+
+
         </div>
 </section>
 
@@ -70,7 +70,7 @@
 
     <div class="container">
         <div class="row p-t-108 p-b-70">
-            
+
                 @foreach ($dinners as $item)
                     <div class="col-md-8 col-lg-6 m-l-r-auto">
                         <div class="blo3 flex-w flex-col-l-sm m-b-30">
@@ -93,20 +93,20 @@
                                 justify-content: space-between;
                                 width: 100%;">
                                     <span class="txt22 ">
-                                        {{ $item->prix }} DHs
+                                        {{ $item->prix }} MAD
                                     </span>
-                                    
+
                                         <a href="{{ route('cart.show', $item->id) }}" class="btn3 flex-c-m size13 txt11 trans-0-4" >
-                                    commander</a> 
-                                    
+                                    commander</a>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 @endforeach
-            
 
-            
+
+
         </div>
     </div>
 </section>

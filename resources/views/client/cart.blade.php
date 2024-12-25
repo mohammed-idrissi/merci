@@ -49,7 +49,7 @@
                     <div class="meduiam mb-1">{{ $repas->type }}</div>
                     <h1 class="display-5 fw-bolder">{{ $repas->nom }}</h1>
                     <div class="fs-20 mb-7">
-                        <span>{{ $repas->prix }} DHS</span>
+                        <span>{{ $repas->prix }} MAD</span>
 
                     </div>
                     <p class="lead">{{ $repas->description }}</p>

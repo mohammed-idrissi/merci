@@ -35,7 +35,7 @@
                                     <div class="line-item-mainmenu bg3-pattern"></div>
 
                                     <div class="price-item-mainmenu txt22">
-                                        {{ $item->prix }} DHs
+                                        {{ $item->prix }} MAD
                                     </div>
                                 </div>
 
@@ -66,7 +66,7 @@
                                     <div class="line-item-mainmenu bg3-pattern"></div>
 
                                     <div class="price-item-mainmenu txt22">
-                                        {{ $item->prix }} DHs
+                                        {{ $item->prix }} MAD
                                     </div>
                                 </div>
 
@@ -101,7 +101,7 @@
                                     <div class="line-item-mainmenu bg3-pattern"></div>
 
                                     <div class="price-item-mainmenu txt22">
-                                        {{ $item->prix }} DHs
+                                        {{ $item->prix }} MAD
                                     </div>
                                 </div>
 
@@ -131,7 +131,7 @@
                                     <div class="line-item-mainmenu bg3-pattern"></div>
 
                                     <div class="price-item-mainmenu txt22">
-                                        {{ $item->prix }} DHs
+                                        {{ $item->prix }} MAD
                                     </div>
                                 </div>
 
@@ -160,7 +160,7 @@
 
         <div class="container">
             <div class="row p-t-108 p-b-70">
-                
+
                     @foreach ($lunches as $item)
                         <div class="col-md-8 col-lg-6 m-l-r-auto">
                             <div class="blo3 flex-w flex-col-l-sm m-b-30">
@@ -179,14 +179,14 @@
                                     </span>
 
                                     <span class="txt22 m-t-20">
-                                        {{ $item->prix }} DHs
+                                        {{ $item->prix }} MAD
                                     </span>
                                 </div>
                             </div>
                         </div>
                     @endforeach
-                
-                
+
+
             </div>
     </section>
 
@@ -204,7 +204,7 @@
 
         <div class="container">
             <div class="row p-t-108 p-b-70">
-                
+
                     @foreach ($dinners as $item)
                         <div class="col-md-8 col-lg-6 m-l-r-auto">
                             <div class="blo3 flex-w flex-col-l-sm m-b-30">
@@ -223,15 +223,15 @@
                                     </span>
 
                                     <span class="txt22 m-t-20">
-                                        {{ $item->prix }} DHs
+                                        {{ $item->prix }} MAD
                                     </span>
                                 </div>
                             </div>
                         </div>
                     @endforeach
-                
 
-                
+
+
             </div>
         </div>
     </section>

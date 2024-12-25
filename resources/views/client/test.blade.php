@@ -47,7 +47,7 @@
                                     <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" type="button"></button>
                                     <input class="quantity" min="1" name="qty" value="{{ $cartItem->qty }}" type="number">
                                     <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus" type="button"></button>
-    
+
                                     <span class="backgroundOPL"></span>
                                     <span class="backgroundOPR"></span>
                                 </div>
@@ -111,7 +111,7 @@
                     <td>
                         <a href="{{ route('comnd.create') }}" class="btn btn-danger">valider</a>
                     </td>
-                    
+
                 </tr>
                 <tr class="pannier">
                     <td>
@@ -150,7 +150,7 @@
                     {{ $cartItem->price }} DHS
                 </td>
                 <td data-label="quantite" class="pannier">
-            
+
                     <form action="{{ route('pannier.update', $cartItem->rowId) }}" method="post">
                         {{-- <input type="number" name='qty' value="{{ $cartItem->qty }}"> --}}
                         <div class="increment">
@@ -158,12 +158,12 @@
                                 <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" type="button"></button>
                                 <input class="quantity" min="1" name="qty" value="{{ $cartItem->qty }}" type="number">
                                 <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus" type="button"></button>
-            
+
                                 {{-- <span class="backgroundOPL"></span>
                                 <span class="backgroundOPR"></span> --}}
                             </div>
                             <button type="submit" class="btn btn-outline-dark">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" 
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
                                     fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                     <path
                                         d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
@@ -191,7 +191,7 @@
                             @csrf
                             @method('DELETE')
                         </form>
-            
+
                     </td>
                     {{-- <td class="pannier">
                         <form action="{{ route('commande.store') }}" method="post">
@@ -200,11 +200,11 @@
                             <input type="hidden" name="id" value="{{ $cartItem->id }}">
                             <input type="hidden" name="prix" value="{{ $cartItem->price * $cartItem->qty }}">
                             <button type="submit" class="btn btn-success">commander</button>
-            
+
                         </form>
                     </td> --}}
                 {{-- </td> --}}
-            
+
             </tr>
             @endforeach
         </tbody>
@@ -212,14 +212,14 @@
             <tr class="pannier">
                 <td colspan="6" class="d-flex justify-content-between p-2 mb-2 " style="background-color: #e1f5fe;">
                     <h5 class="fw-bold mb-0">Total:</h5>
-                    <h5 class="fw-bold mb-0">{{ $total }} DHS</h5>
+                    <h5 class="fw-bold mb-0">{{ $total }} MAD</h5>
                 </td>
             </tr>
-            
+
         </tfoot>
         </table>
 
-        
+
         <div>
             <div>
                 <a href="clientMenu" class="btn btn-danger">continue ...</a>

@@ -23,6 +23,7 @@ class CreateAppartementController extends Controller
     // تخزين الغرفة الجديدة في قاعدة البيانات
     public function store(Request $request)
     {
+        
         $validatedData = $request->validate([
             'nom' => 'required|string|max:255',
             'description' => 'required|string',

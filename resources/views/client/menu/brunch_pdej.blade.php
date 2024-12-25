@@ -13,7 +13,7 @@
                     {{-- Merci Laayoune --}}
                     <img class="mercilogo-autre"  src="clientpage/images/MERCI_IMG/LOGO/Logo-Merci-b1.png" alt="" style="width: 300px" >
                 </div>
-            
+
                 <div style="    display: flex;
                 align-items: center;">
                     <a href="https://www.facebook.com/mercilaayoune"><img src="clientpage/images/MERCI_IMG/social-media-merci/facebook-app-symbol-merci.png" alt="" width="22px"></a>
@@ -28,7 +28,7 @@
 
     <div class="container">
         <div class="row p-t-108 p-b-70">
-            
+
                 @foreach ($Petits_Déjeuners as $item)
                     <div class="col-md-8 col-lg-6 m-l-r-auto">
                         <div class="blo3 flex-w flex-col-l-sm m-b-30">
@@ -51,20 +51,20 @@
                                 justify-content: space-between;
                                 width: 100%;">
                                     <span class="txt22 ">
-                                        {{ $item->prix }} DHs
+                                        {{ $item->prix }} MAD
                                     </span>
-                                    
+
                                         <a href="{{ route('cart.show', $item->id) }}" class="btn3 flex-c-m size13 txt11 trans-0-4" >
-                                    commander</a> 
-                                    
+                                    commander</a>
+
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
                 @endforeach
-            
-            
+
+
         </div>
 </section>
 
@@ -89,7 +89,7 @@
                     {{-- Merci Laayoune --}}
                     <img class="mercilogo-autre"  src="clientpage/images/MERCI_IMG/LOGO/Logo-Merci-b1.png" alt="" style="width: 300px">
                 </div>
-            
+
                 <div style="    display: flex;
                 align-items: center;">
                     <a href="https://www.facebook.com/mercilaayoune"><img src="clientpage/images/MERCI_IMG/social-media-merci/facebook-app-symbol-merci.png" alt="" width="22px"></a>
@@ -104,7 +104,7 @@
 
     <div class="container">
         <div class="row p-t-108 p-b-70">
-            
+
                 @foreach ($Brunch as $item)
                     <div class="col-md-8 col-lg-6 m-l-r-auto">
                         <div class="blo3 flex-w flex-col-l-sm m-b-30">
@@ -127,20 +127,20 @@
                                 justify-content: space-between;
                                 width: 100%;">
                                     <span class="txt22 ">
-                                        {{ $item->prix }} DHs
+                                        {{ $item->prix }} MAD
                                     </span>
-                                    
+
                                         <a href="{{ route('cart.show', $item->id) }}" class="btn3 flex-c-m size13 txt11 trans-0-4" >
-                                    commander</a> 
-                                    
+                                    commander</a>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 @endforeach
-            
 
-            
+
+
         </div>
     </div>
 
@@ -152,42 +152,42 @@
                 </h3>
             </div>
             <div class="py-3 bg-light mb-3 cardcoupon" id="coupon" >
-                <main> 
-                
-                    <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;"> 
-                        <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3"> 
-                            
+                <main>
+
+                    <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
+                        <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+
                             @foreach ($Supplements as $item)
-                                <div class="col"> 
-                                    <div class="card h-100 shadow-sm"> 
-                                        <img src="{{$item->image}}" class="card-img-top" alt="..." > 
-                                        <div class="card-body"> 
-                                            
-    
+                                <div class="col">
+                                    <div class="card h-100 shadow-sm">
+                                        <img src="{{$item->image}}" class="card-img-top" alt="..." >
+                                        <div class="card-body">
+
+
                                             <div class="flex-w flex-b m-b-3">
-                                                
+
                                                 <span class="float-start" >
-                                
+
                                                     {{ $item->nom }}
                                                 </span>
-                                
+
                                                 <div class="line-item-mainmenu bg3-pattern"></div>
-                                
+
                                                 <div class="float-end price-hp" style="font-size: 1.25em;">
                                                     {{ $item->prix }}DH
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="text-center my-4">
                                                 <a href="{{ route('cart.show', $item->id) }}" class="btn3 flex-c-m size13 txt11 trans-0-4" style="left: 50%;transform: translate(-50%, -50%); position: absolute;"
-                                            >Ajouter</a> 
+                                            >Ajouter</a>
                                             </div>
-                                        </div> 
-                                    </div> 
-                                </div>  
-                            @endforeach       
-                        </div> 
-                    </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
                 </main>
             </div>
         </div>

@@ -93,7 +93,7 @@ leurs prix et les quantités sélectionnées avant de passer à l'étape suivant
                 </td>
                 <td data-label="repas" class="pannier">{{ $cartItem->name }}</td>
                 <td data-label="prix" class="pannier">
-                    {{ $cartItem->price }} DHS
+                    {{ $cartItem->price }} MAD
                 </td>
                 <td data-label="quantite" class="pannier">
 
@@ -121,7 +121,7 @@ leurs prix et les quantités sélectionnées avant de passer à l'étape suivant
                     </form>
                 </td>
                     <td data-label="subtotal" class="pannier">
-                        {{ $cartItem->price * $cartItem->qty }} DHS
+                        {{ $cartItem->price * $cartItem->qty }} MAD
                     </td>
                     <td data-label="delete" class="actions pannier" data-th="">
                         <form action="{{ route('pannier.destroy', $cartItem->rowId) }}" method="post">
@@ -145,7 +145,7 @@ leurs prix et les quantités sélectionnées avant de passer à l'étape suivant
         </table>
         <div class="total">
             <div class="t">
-                <h5 class="fw-bold mb-0">Total: {{ $total }} DHS</h5>
+                <h5 class="fw-bold mb-0">Total: {{ $total }} MAD</h5>
                 <span></span>
             </div>
 
