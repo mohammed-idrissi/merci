@@ -145,23 +145,29 @@ Route::post('/reservations', [ReservationController::class, 'store'])->name('res
 
 
 
-
+// المسارات العامة لشقق
 Route::resource('appartements', AppartementController::class)->except(['show']);
 
-// المسارات المتعلقة بالتأكيد والعملية الخاصة بالشقق
+// المسارات المخصصة للتأكيد والعمليات الخاصة بالشقق
 Route::get('/appartement/validation/{id}', [AppartementController::class, 'validation'])->name('appartement.validation');
 Route::get('/appartement/validate/{id}', [AppartementController::class, 'validateAppartement'])->name('appartement.validate');
 Route::get('/appartement/valid/{id}', [AppartementController::class, 'Validation2'])->name('appartement.appartementValid');
+
+// المسارات الإضافية للشقق
 Route::get('/appartements', [AppartementController::class, 'index'])->name('appartements.index');
 Route::get('/appartement/admin', [AppartementController::class, 'appartementAdmin'])->name('appartement.admin');
 
-// مسارات CRUD لشقق إضافية
+// مسارات CRUD الإضافية
 Route::post('/appartements/store', [CreateAppartementController::class, 'store'])->name('appartements.store');
 Route::get('/appartements/{id}/edit', [CreateAppartementController::class, 'edit'])->name('appartements.edit');
 Route::get('/appartement/{id}/edit', [AppartementController::class, 'edit'])->name('appartement.edit');
 Route::put('/appartement/{id}', [AppartementController::class, 'update'])->name('appartement.update');
 Route::delete('/appartement/{id}', [AppartementController::class, 'destroy'])->name('appartement.destroy');
+
+// مسار عرض قائمة الشقق
 Route::get('/ApparetementIndex', [AppartementController::class, 'index'])->name('Apparetementindex');
+
+// مسار قائمة الطعام
 Route::get('/menu/voirmenu', [MenuController::class, 'voirmenu'])->name('client.menu.voirmenu');
 
 Route::prefix('admin/menu')->group(function () {
