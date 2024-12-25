@@ -895,7 +895,6 @@
             <!-- Reveiw -->
 
 <script src="{{ secure_asset('assets/js/jquery.js') }}"></script>
-
     @if ($msg = Session::get('msg'))
 
             <!-- Modal -->

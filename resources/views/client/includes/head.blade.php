@@ -27,7 +27,7 @@
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5/5hb7VV91Nj75daVUwDIZKtKoSZj3txMIdGBoc9" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybHcP3SrKe8pQlOV9MRLDKxQHi4DgHlxD69kZeYd0fN1QdZ7+" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@2.11.8/dist/umd/popper.min.js" integrity="sha384-Q6+PopperSecureHashHere" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+BootstrapSecureHashHere" crossorigin="anonymous"></script>
 </head>
