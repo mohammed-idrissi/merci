@@ -159,7 +159,7 @@ Route::get('/appartement/admin', [AppartementController::class, 'appartementAdmi
 
 // مسارات CRUD الإضافية
 Route::post('/appartements/store', [CreateAppartementController::class, 'store'])->name('appartements.store');
-Route::get('/appartements/{id}/edit', [CreateAppartementController::class, 'edit'])->name('appartements.edit');
+Route::get('/appartements/{id}/edit', [CreateAppartementController::class, 'edit'])->name('appartement.edit');
 Route::put('/appartement/{id}', [AppartementController::class, 'update'])->name('appartement.update');
 Route::delete('/appartement/{id}', [AppartementController::class, 'destroy'])->name('appartement.destroy');
 Route::get('/appartements/create', [CreateAppartementController::class, 'create'])->name('appartements.create');
