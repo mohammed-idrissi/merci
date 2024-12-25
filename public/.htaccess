@@ -15,6 +15,7 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
     # تفعيل X-Content-Type-Options لتجنب مشاكل أنواع المحتوى
     Header set X-Content-Type-Options "nosniff"
 
+
     # تفعيل X-Frame-Options لمنع التضمين
     Header always append X-Frame-Options SAMEORIGIN
 
