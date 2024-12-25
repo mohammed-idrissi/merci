@@ -17,7 +17,7 @@ class CreateAppartementController extends Controller
     // عرض صفحة إنشاء غرفة جديدة
     public function create()
     {
-        return view('admin.create');
+        return view('appartement.create');
     }
 
     // تخزين الغرفة الجديدة في قاعدة البيانات
@@ -49,7 +49,7 @@ class CreateAppartementController extends Controller
     public function edit($id)
     {
         $appartement = CreateAppartement::findOrFail($id);
-        return view('admin.edit', compact('appartement'));
+        return view('appartement.edit', compact('appartement'));
     }
 
     // تحديث الغرفة في قاعدة البيانات
