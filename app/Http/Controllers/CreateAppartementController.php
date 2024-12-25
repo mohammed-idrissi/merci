@@ -23,7 +23,7 @@ class CreateAppartementController extends Controller
     // تخزين الغرفة الجديدة في قاعدة البيانات
     public function store(Request $request)
     {
-        
+        // التحقق من صحة البيانات المدخلة
         $validatedData = $request->validate([
             'nom' => 'required|string|max:255',
             'description' => 'required|string',
@@ -33,29 +33,37 @@ class CreateAppartementController extends Controller
             'extra_info' => 'nullable|string|max:255',
         ]);
 
+        // التعامل مع رفع الصورة
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('images'), $imageName);
-            $validatedData['image'] = 'images/' . $imageName;
+            $request->image->move(public_path(), $imageName); // تخزين الصورة في مجلد public مباشرة
+            $validatedData['image'] = $imageName; // حفظ اسم الصورة فقط
         }
 
+        // ضبط القيمة الافتراضية لـ etoiles إذا لم يتم تقديمها
         $validatedData['etoiles'] = $validatedData['etoiles'] ?? 3;
 
+        // إنشاء غرفة جديدة
         CreateAppartement::create($validatedData);
 
+        // إعادة التوجيه إلى صفحة عرض الغرف مع رسالة نجاح
         return redirect()->route('appartements.index')->with('success', 'Appartement créé avec succès !');
     }
 
     // عرض صفحة تعديل غرفة معينة
     public function edit($id)
     {
+        // البحث عن الغرفة باستخدام المعرف
         $appartement = CreateAppartement::findOrFail($id);
+
+        // عرض صفحة التعديل مع تمرير بيانات الغرفة
         return view('appartement.edit', compact('appartement'));
     }
 
     // تحديث الغرفة في قاعدة البيانات
     public function update(Request $request, $id)
     {
+        // التحقق من صحة البيانات المدخلة
         $validated = $request->validate([
             'nom' => 'required|string|max:255',
             'description' => 'required|string',
@@ -65,25 +73,33 @@ class CreateAppartementController extends Controller
             'extra_info' => 'nullable|string|max:255',
         ]);
 
+        // البحث عن الغرفة باستخدام المعرف
         $appartement = CreateAppartement::findOrFail($id);
 
+        // التعامل مع رفع الصورة
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('images'), $imageName);
-            $validated['image'] = 'images/' . $imageName;
+            $request->image->move(public_path(), $imageName); // تخزين الصورة في مجلد public مباشرة
+            $validated['image'] = $imageName; // حفظ اسم الصورة فقط
         }
 
+        // تحديث بيانات الغرفة
         $appartement->update($validated);
 
+        // إعادة التوجيه إلى صفحة عرض الغرف مع رسالة نجاح
         return redirect()->route('appartements.index')->with('success', 'Appartement mis à jour avec succès');
     }
 
     // حذف الغرفة
     public function destroy($id)
     {
+        // البحث عن الغرفة باستخدام المعرف
         $appartement = CreateAppartement::findOrFail($id);
+
+        // حذف الغرفة من قاعدة البيانات
         $appartement->delete();
 
+        // إعادة التوجيه إلى صفحة عرض الغرف مع رسالة نجاح
         return redirect()->route('appartements.index')->with('success', 'Appartement supprimé avec succès');
     }
 }
