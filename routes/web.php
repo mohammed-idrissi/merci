@@ -151,8 +151,7 @@ Route::resource('appartements', AppartementController::class)->except(['show']);
 // المسارات المتعلقة بالتأكيد والعملية الخاصة بالشقق
 Route::get('/appartement/validation/{id}', [AppartementController::class, 'validation'])->name('appartement.validation');
 Route::get('/appartement/validate/{id}', [AppartementController::class, 'validateAppartement'])->name('appartement.validate');
-Route::get('/appartement/valid', [AppartementController::class, 'Validation'])->name('appartement.appartementValid');
-Route::get('/appartement/valid/{id}', [AppartementController::class, 'Validation2'])->name('appartement.appartementValid2');
+Route::get('/appartement/valid/{id}', [AppartementController::class, 'Validation2'])->name('appartement.appartementValid');
 Route::get('/appartements', [AppartementController::class, 'index'])->name('appartements.index');
 Route::get('/appartement/admin', [AppartementController::class, 'appartementAdmin'])->name('appartement.admin');
 

@@ -37,7 +37,7 @@
                 <div class="card-info">
                     <h3>{{ $room->nom }}</h3>
                     <p>{{ $room->description }}</p>
-                    <p class="price">Prix: {{ $room->prix }}€ / nuit</p>
+                    <p class="price">Prix: {{ $room->prix }}MAD / nuit</p>
                     <div class="stars">
                         {!! str_repeat('★', $room->etoiles) !!}
                         {!! str_repeat('☆', 5 - $room->etoiles) !!}
