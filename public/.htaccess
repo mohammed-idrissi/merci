@@ -19,6 +19,7 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
     # تفعيل X-Frame-Options لمنع التضمين
     Header always append X-Frame-Options SAMEORIGIN
 
+
     # تفعيل X-XSS-Protection لتجنب هجمات XSS
     Header set X-XSS-Protection "1; mode=block"
 </IfModule>
